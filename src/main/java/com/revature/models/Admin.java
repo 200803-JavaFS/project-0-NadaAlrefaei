@@ -1,6 +1,6 @@
 package com.revature.models;
 
-public class Admin {
+public class Admin extends Employee{
 	
 	// view and edit all accounts:
 	//Approving/denying accounts

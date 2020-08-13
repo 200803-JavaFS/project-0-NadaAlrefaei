@@ -2,6 +2,9 @@ package com.revature;
 
 import java.util.Scanner;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.revature.models.Account;
 import com.revature.services.Services;
 
@@ -53,10 +56,12 @@ public class Driver {
 			System.out.println(Account.balance);
 			
 		
-		
+			private static final Logger log = LogManager.getLogger(Driver.class); 
 	
 		scan.close();
 		
+		
+		Account b=new Account(); 
 		
 	}
 
