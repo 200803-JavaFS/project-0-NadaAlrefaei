@@ -1,36 +1,42 @@
 package com.revature.models;
-import com.revature.services.Services;
 
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Account {
 	
+	
+	private static final Logger log = LogManager.getLogger(Account.class);
+
+	public static double balance;  
+	public String type;
+	private int AccNum;
+	
+	public int getAccNum() {
+		return AccNum;
+	}
+
+	public void setAccNum(int accNum) {
+		AccNum = accNum;
+	}
+
 	public Account() {
-		super(); 
-	}
-
-	public Account(int accNumber, String userPassword, String userId) {    
 		super();
-		this.accNumber = accNumber;
-		this.userPassword = userPassword;
-		this.userId = userId;
 	}
+
+	public Account(double balance, String type) {
+		super();
+		this.balance = balance;
+		this.type = type;
+		log.info("Your account type is "+ type);
+	}
+
+	@Override
+	public String toString() {
+		return "Account [balance=" + balance + ", type=" + type + "]";
+	}
+	
 	
 
-	public static double balance=500.0;  
-	private int accNumber;  
-	private String userPassword;  
-	private String userId;  
 	
-	
-
-	
-	public void setAccNum(int num) {
-		accNumber=num;
-	}
-	
-	public long getAccNum()
-	{
-		return accNumber;
-	}
 }

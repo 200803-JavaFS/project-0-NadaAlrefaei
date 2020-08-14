@@ -8,17 +8,19 @@ import org.apache.logging.log4j.Logger;
 import com.revature.models.Account;
 import com.revature.services.Services;
 
-//import org.apache.logging.log4j.LogManager;
-//import org.apache.logging.log4j.Logger;
 
 
 
 public class Driver {
+	
+	private static final Logger log = LogManager.getLogger(Driver.class);
+	
+	private static Services sr=new Services();
 
 	public static void main(String[] args) {
 		
 		
-			System.out.println("Welcome to Bank of Nada Portal!");
+			log.info("Welcome to Bank of Nada Portal!");
 			Scanner scan=new Scanner(System.in);
 			
 			System.out.println("Enter deposit amount:");
@@ -42,7 +44,7 @@ public class Driver {
 			
 			
 			
-		
+		//call dao in driver
 
 			
 			System.out.println("Enter transfering amount: ");
@@ -56,7 +58,7 @@ public class Driver {
 			System.out.println(Account.balance);
 			
 		
-			private static final Logger log = LogManager.getLogger(Driver.class); 
+			//private static final Logger log = LogManager.getLogger(Driver.class); 
 	
 		scan.close();
 		

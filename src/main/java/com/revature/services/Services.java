@@ -1,17 +1,35 @@
 package com.revature.services;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.revature.models.Account;
+import com.revature.repositories.AccountDAO;
 
 public class Services {
 	
+	private static final Logger log = LogManager.getLogger(Services.class);
+	
+	public Services() {
+		super();
+		
+	}
+
 	public double AccBalance;
 	
 	public Services(double accbalance) {
 		AccBalance=accbalance;
 		
+		
 	}
 
+	private AccountDAO dao=new AccountDAO();
 	
+	public Account findAccById(int i)
+	{
+		log.info("DAO");
+		return dao.findById(i);
+	}
 	
 	public double Deposit(double amount) {
 	
