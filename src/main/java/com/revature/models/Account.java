@@ -8,9 +8,13 @@ public class Account {
 	
 	private static final Logger log = LogManager.getLogger(Account.class);
 
+	private int userId;
+	private int accountId;
 	public static double balance;  
 	public String type;
 	private int AccNum;
+	private String password;
+	private boolean isActive;
 	
 	public int getAccNum() {
 		return AccNum;

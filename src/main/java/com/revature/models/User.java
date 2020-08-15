@@ -10,43 +10,36 @@ public class User {
 	}
 
 
-	public User(int userID, String userName, String userType, String firstName, String lastName, int sSN,
-			String bdate) {
+	public User(int userID, String userName, String userType, String firstName, String lastName, String bdate) {
 		super();
-		UserID = userID;
-		UserName = userName;
-		UserType = userType;
+		this.userID = userID;
+		this.userName = userName;
+		this.userType = userType;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		SSN = sSN;
-		Bdate = bdate;
+		
+		this.bDate = bdate;
 	}
-	private int UserID;
-	public String UserName;
-	public String UserType;
+	private int userID;
+	public String userName;
+	public String userType;
 	public String firstName;
 	public String lastName;
-	private int SSN;
-	private String Bdate;
+	private String bDate;
 	public int getUserID() {
-		return UserID;
+		return userID;
 	}
 	
 	
 	public void setUserID(int userID) {
-		UserID = userID;
+		this.userID = userID;
 	}
-	public int getSSN() {
-		return SSN;
-	}
-	public void setSSN(int sSN) {
-		SSN = sSN;
-	}
+	
 	public String getBdate() {
-		return Bdate;
+		return bDate;
 	}
 	public void setBdate(String bdate) {
-		Bdate = bdate;
+		this.bDate = bdate;
 	} 
 	
 	

@@ -20,6 +20,9 @@ public class Driver {
 	public static void main(String[] args) {
 		
 		
+		
+			Account a=sr.findAccById(1);
+			
 			log.info("Welcome to Bank of Nada Portal!");
 			Scanner scan=new Scanner(System.in);
 			
