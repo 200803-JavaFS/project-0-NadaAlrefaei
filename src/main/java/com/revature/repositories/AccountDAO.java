@@ -9,7 +9,7 @@ public class AccountDAO {
 	
 	private static final Logger log = LogManager.getLogger(AccountDAO.class);
 
-	Account[] accArray= {new Account(600.8, "checking"), new Account(500.0,"savings")};
+	Account[] accArray= {new Account(600.8, "nada",1), new Account(500.0,"ahmad",1)};
 	
 	public Account findById(int id)
 	{

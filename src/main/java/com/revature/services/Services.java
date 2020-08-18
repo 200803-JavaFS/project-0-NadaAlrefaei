@@ -1,5 +1,7 @@
 package com.revature.services;
 
+import java.util.Scanner;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -10,20 +12,24 @@ public class Services {
 	
 	private static final Logger log = LogManager.getLogger(Services.class);
 	
+	private Account myAcc;
+	public double amnt;
+	
 	public Services() {
 		super();
 		
 	}
-
-	public double AccBalance;
 	
-	public Services(double accbalance) {
-		AccBalance=accbalance;
-		
-		
+
+	public Services(double amnt,Account myAcc) {
+		super();
+		this.amnt=amnt;
+		this.myAcc = myAcc;
 	}
 
+
 	private AccountDAO dao=new AccountDAO();
+	
 	
 	public Account findAccById(int i)
 	{
@@ -31,50 +37,68 @@ public class Services {
 		return dao.findById(i);
 	}
 	
-	public double Deposit(double amount) {
 	
-		if(amount>=0) {
-			AccBalance=AccBalance+amount;
-			Account.balance=AccBalance;
-			System.out.println("The new balance is: $"+ AccBalance);
+	
+	public void Deposit(double amount, Account a) {
+	
+		amnt=amount;
+		myAcc.setAccBalance(a.getAccBalance());
+		double totalBalance=myAcc.getAccBalance();
+		if(amnt>=0) {
+			totalBalance=totalBalance + amnt;
+			a.setAccBalance(totalBalance);
+			System.out.println("The new balance is: $"+ totalBalance);
 			}
 			else {
-				System.out.println("You entered a negative amount! Your balance is: "+ AccBalance );
+				System.out.println("You entered a negative amount! Your balance is: "+ totalBalance );
 			}
 		
-		return AccBalance;
+		
 	}
 	
 	
 	
-	public double Withdraw(double amount) {
+	public void Withdraw(double amount, Account a) {
 		
-		if(Account.balance>=amount) {
-			AccBalance=AccBalance-amount;
-			Account.balance=AccBalance;
-			System.out.println("The new balance is: $"+ AccBalance);
+		amnt=amount;
+		myAcc.setAccBalance(a.getAccBalance());
+		double totalBalance=myAcc.getAccBalance();
+		if(totalBalance>=amnt) {
+			totalBalance=totalBalance-amnt;
+			a.setAccBalance(totalBalance);
+			System.out.println("The new balance is: $"+ totalBalance);
 			}
 			else {
-				System.out.println("This transaction can not be done, the limit amount you can Withdraw is: "+ AccBalance );
+				System.out.println("This transaction can not be done, the limit amount you can Withdraw is: "+ totalBalance );
 			}
 		
-		return AccBalance;
+		
 	}
 	
 	
 	
-		public double Transfer(double amount, Account a) {
+		public void Transfer(double amount, Account a, Account b) {
 		
-		if(a.balance>=amount) {
-			Withdraw(amount);
-			//Deposit(amount);
-			System.out.println("You have transfered an amount: $"+ amount+ "to the account "+a.getAccNum() +" sucessfully.");
+			amnt=amount;
+			double totalBalance=myAcc.getAccBalance();
+				if(totalBalance>=amnt) {
+					Withdraw(amnt, a);
+					Deposit(amnt, b);
+			System.out.println("You have transfered an amount: $"+ amount+ " to "+b.getUserName() +"'s Account sucessfully.");
 			}
 			else {
-				System.out.println("This transaction can not be done, the limit amount you can Transfer is: "+ AccBalance );
+				System.out.println("This transaction can not be done, the limit amount you can Transfer is: "+ totalBalance);
 			}
 		
-		return AccBalance;
+		
 	}
+		
+		
+		public String accInfo(Account a) {
+			return "Account Number "+ a.getAccNum() +"Customer Name: "+ a.getUserName();
+		}
+		
+		
+		
 	
 }
