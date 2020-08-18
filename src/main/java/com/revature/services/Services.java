@@ -12,7 +12,7 @@ public class Services {
 	
 	private static final Logger log = LogManager.getLogger(Services.class);
 	
-	private Account myAcc;
+	private Account myAcc = new Account();
 	public double amnt;
 	
 	public Services() {
@@ -61,6 +61,7 @@ public class Services {
 	public void Withdraw(double amount, Account a) {
 		
 		amnt=amount;
+		System.out.println(a);
 		myAcc.setAccBalance(a.getAccBalance());
 		double totalBalance=myAcc.getAccBalance();
 		if(totalBalance>=amnt) {

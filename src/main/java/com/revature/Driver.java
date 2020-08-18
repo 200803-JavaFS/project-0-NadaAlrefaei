@@ -29,39 +29,60 @@ public class Driver {
 		
 			
 			Bank myAcc=new Bank();
+			
 			Bank transAcc=new Bank();
 			Scanner scan=new Scanner(System.in);
 			int choice;
+			System.out.println("Welcome to Bank of Nada!");	
 			
-			do {
+		
 			
-				System.out.println("Welcome to Bank of Nada Portal!");	
+				System.out.println("Choose an option to start: ");
 				System.out.println("1) Open a new bank account");
-		        System.out.println("2) Deposit to a bank account");
-		        System.out.println("3) Withdraw to bank account");
-		        System.out.println("4) Transfer to other bank account");
-		        System.out.println("5) Print account information");
-		        System.out.println("6) Quit");
-		        System.out.println();
-		        System.out.print("Choose an option from 1-6: ");
+				System.out.println("2) Login to exicting account");
+				System.out.println("3) Quit");
+				choice=scan.nextInt();
+				
+				switch(choice)
+				{
+				case 1:
+					System.out.println("To open a new account, insert account name: ");
+					String customerName=scan.next();
+					System.out.println("Insert the opening amount:");
+					double balance=scan.nextDouble();
+					System.out.println("Choose your bank account type: ");
+					System.out.println("1) Checking Account");
+					System.out.println("1) Saving Account ");
+					int type=scan.nextInt();
+					System.out.println("Your "+myAcc.openNewAcc(balance,customerName, type) +" account has been created succefully");
+					myAcc.setMyAcc(new Account(balance,customerName, type));
+					System.out.println(myAcc.getMyAcc());
+					break;
+					
+				case 2:
+					System.out.println("login here");
+					break;
+				case 3:
+					System.exit(0);
+					break;
+				}
+				
+				
+				 System.out.println("Choose an option from 1-4: ");
+				 System.out.println();
+			do {
+					
+		        System.out.println("1) Deposit to a bank account");
+		        System.out.println("2) Withdraw to bank account");
+		        System.out.println("3) Transfer to other bank account");
+		        System.out.println("4) Print account information");
+		        System.out.println("5) Quit");
+		      
 		        choice = scan.nextInt();
 			
 			switch(choice)
 			{
 			case 1:
-			
-				System.out.println("To open a new account, insert account name: ");
-				String customerName=scan.next();
-				System.out.println("Insert the opening amount:");
-				double balance=scan.nextDouble();
-				System.out.println("Choose your bank account type: ");
-				System.out.println("1) Checking Account");
-				System.out.println("1) Saving Account ");
-				int type=scan.nextInt();
-				System.out.println("Your "+myAcc.openNewAcc(balance,customerName, type) +" account has been created succefully");
-				break;
-				
-			case 2:
 				System.out.println("Enter deposit amount:");
 				double dep=scan.nextDouble();
 				System.out.println("Enter your account num:");
@@ -73,11 +94,12 @@ public class Driver {
 					System.out.println("You have entered an undefined account number");
 				break;
 				
-			case 3:
+			case 2:
 				System.out.println("Enter withdrawl amount: ");
 				double wth=scan.nextDouble();
 				System.out.println("Enter your account num:");
-				int num2=scan.nextInt();				
+				int num2=scan.nextInt();
+				System.out.println(myAcc.getMyAcc());
 				if(num2==myAcc.getMyAcc().getAccNum()) {
 				sr.Withdraw(wth, myAcc.getMyAcc());
 				}
@@ -85,7 +107,7 @@ public class Driver {
 					System.out.println("You have entered an undefined account number");
 				break;
 				
-			case 4:
+			case 3:
 				System.out.println("Enter transfering amount: ");
 				
 				double transf=scan.nextDouble();
@@ -104,17 +126,16 @@ public class Driver {
 					System.out.println("The account you are transfering from is not valid.");
 				break;
 			
-			case 5:
+			case 4:
 				sr.accInfo(myAcc.getMyAcc());
 				break;
-					
-			case 6:
+			case 5:
 				System.exit(0);
-				
+				break;
 			}
 			}
 			
-			while(choice!='6');
+			while(choice!='5');
 			
 			
 			scan.close();
