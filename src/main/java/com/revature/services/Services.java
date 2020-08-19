@@ -1,12 +1,11 @@
 package com.revature.services;
 
-import java.util.Scanner;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+
 import com.revature.models.Account;
-import com.revature.repositories.AccountDAO;
+
 
 public class Services {
 	
@@ -28,14 +27,7 @@ public class Services {
 	}
 
 
-	private AccountDAO dao=new AccountDAO();
 	
-	
-	public Account findAccById(int i)
-	{
-		log.info("DAO");
-		return dao.findById(i);
-	}
 	
 	
 	

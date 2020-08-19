@@ -1,10 +1,12 @@
 package com.revature;
 
+import java.util.List;
 import java.util.Scanner;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.revature.daos.AccountDAO;
 import com.revature.models.Account;
 import com.revature.models.Bank;
 import com.revature.services.Services;
@@ -19,15 +21,13 @@ public class Driver {
 	
 	private static Services sr=new Services();
 
+	private static AccountDAO dao=new AccountDAO();
+	
 	
 	public static void main(String[] args) {
 		
 		
-		//for DAO class
-			//Account a=sr.findAccById(1);
-		//call dao in driver
-		
-			
+			double balance=0;
 			Bank myAcc=new Bank();
 			
 			Bank transAcc=new Bank();
@@ -49,18 +49,24 @@ public class Driver {
 					System.out.println("To open a new account, insert account name: ");
 					String customerName=scan.next();
 					System.out.println("Insert the opening amount:");
-					double balance=scan.nextDouble();
+					double newBalance=scan.nextDouble();
 					System.out.println("Choose your bank account type: ");
 					System.out.println("1) Checking Account");
-					System.out.println("1) Saving Account ");
+					System.out.println("2) Saving Account ");
 					int type=scan.nextInt();
-					System.out.println("Your "+myAcc.openNewAcc(balance,customerName, type) +" account has been created succefully");
-					myAcc.setMyAcc(new Account(balance,customerName, type));
+					System.out.println("Your account number "+myAcc.openNewAcc(newBalance,customerName, type) +" has been created succefully");
+					myAcc.setMyAcc(new Account(newBalance,customerName, type));
+					balance=newBalance;
 					System.out.println(myAcc.getMyAcc());
+					
 					break;
 					
 				case 2:
-					System.out.println("login here");
+					System.out.println("Enter your User Id:");
+					int id=scan.nextInt();
+					System.out.println("Enter your Password:");
+					String pass=scan.next();
+					myAcc.setMyAcc(new Account(id,pass));
 					break;
 				case 3:
 					System.exit(0);
@@ -111,14 +117,20 @@ public class Driver {
 				System.out.println("Enter transfering amount: ");
 				
 				double transf=scan.nextDouble();
+				transAcc.setMyAcc(new Account());
+				
 				System.out.println("Insert the account number you wish to transfer from: ");
 				int transNum=scan.nextInt();
-				if(transNum==myAcc.getMyAcc().getAccNum()) 
+				myAcc.getMyAcc().setAccNum(transNum);
+				if(transNum==transAcc.getMyAcc().getAccNum()) 
 				{
 					System.out.println("Insert the account number you wish to transfer to: ");
 					int transNumTo=scan.nextInt();
-					if(transNumTo==transAcc.getMyAcc().getAccNum())
+					transAcc.getMyAcc().setAccNum(transNumTo);
+					int transTo=transAcc.getMyAcc().getAccNum();
+					if(transNumTo==transTo)
 						sr.Transfer(transf, myAcc.getMyAcc(), transAcc.getMyAcc());
+					
 					else
 						System.out.println("The account you are transfering to is not valid.");
 				}
@@ -136,6 +148,11 @@ public class Driver {
 			}
 			
 			while(choice!='5');
+			List<Account> list=dao.findAll();
+			
+			for(Account ac:list) {
+				System.out.println(ac);
+			}
 			
 			
 			scan.close();
