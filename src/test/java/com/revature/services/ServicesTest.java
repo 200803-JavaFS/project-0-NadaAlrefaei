@@ -15,9 +15,10 @@ public class ServicesTest {
 	public static Services sr;
 	
 	public static double amnt;
+	public static Account acc1;
+	public static Account acc2;
 	public static double balance;
-	public static int accNumber;
-	public static Account acc;
+	
 	
 	@BeforeClass
 	public static void setSr()
@@ -31,7 +32,6 @@ public class ServicesTest {
 	{
 		amnt=50.0;
 		balance=500.0;
-		accNumber=1;
 	}
 
 	
@@ -50,8 +50,24 @@ public class ServicesTest {
 	@Test
 	public void testDep()
 	{
-		balance=sr.Deposit(amnt, acc);
+		balance=sr.Deposit(amnt, acc1);
 		assertTrue(balance==550.0);
 	
+	}
+	
+	@Test
+	
+	public void testWith()
+	{
+		balance=sr.Withdraw(amnt, acc1);
+		assertTrue(balance==450);
+	}
+	
+	
+	@Test
+	public void testTran()
+	{
+		balance=sr.Transfer(amnt, acc1, acc2);
+		assertTrue(balance==450);
 	}
 }

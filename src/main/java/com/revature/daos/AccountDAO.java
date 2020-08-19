@@ -36,18 +36,5 @@ public class AccountDAO implements IAccountDAO {
 	}
 
 	
-	
-	
-	@Override
-	public Account findByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean addAccount(Account ac) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 }

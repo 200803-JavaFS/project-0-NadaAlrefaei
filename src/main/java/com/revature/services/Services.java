@@ -31,7 +31,7 @@ public class Services {
 	
 	
 	
-	public void Deposit(double amount, Account a) {
+	public double Deposit(double amount, Account a) {
 	
 		amnt=amount;
 		myAcc.setAccBalance(a.getAccBalance());
@@ -44,13 +44,13 @@ public class Services {
 			else {
 				System.out.println("You entered a negative amount! Your balance is: "+ totalBalance );
 			}
-		
+		return totalBalance;
 		
 	}
 	
 	
 	
-	public void Withdraw(double amount, Account a) {
+	public double Withdraw(double amount, Account a) {
 		
 		amnt=amount;
 		System.out.println(a);
@@ -64,13 +64,13 @@ public class Services {
 			else {
 				System.out.println("This transaction can not be done, the limit amount you can Withdraw is: "+ totalBalance );
 			}
-		
+		return totalBalance;
 		
 	}
 	
 	
 	
-		public void Transfer(double amount, Account a, Account b) {
+		public double Transfer(double amount, Account a, Account b) {
 		
 			amnt=amount;
 			double totalBalance=myAcc.getAccBalance();
@@ -83,7 +83,7 @@ public class Services {
 				System.out.println("This transaction can not be done, the limit amount you can Transfer is: "+ totalBalance);
 			}
 		
-		
+		return totalBalance;
 	}
 		
 		
